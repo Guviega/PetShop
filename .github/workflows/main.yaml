@@ -1,0 +1,24 @@
+name: pr-populate
+on:
+  push:
+    branches:
+      - main
+
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  run_workflow:
+    name: Main Branch Validation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Populate PR
+        shell: bash {0}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo "### Eduarda Reichow :two_hearts: :two_hearts: >> $GITHUB_STEP_SUMMARY"
