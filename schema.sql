@@ -72,4 +72,6 @@ ORDER BY count(a.idFuncionario) desc);
 
 --INDEX
 
+--Criado index em pessoa utilizado a coluna nome para agilizar a busca dos clientes pelo nome;
+
 CREATE INDEX "NomeClientes" ON CLIENTE(NOME);
