@@ -1,4 +1,4 @@
-name: pr-populate
+name: action-da-paixao
 on:
   push:
     branches:
@@ -16,4 +16,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "### Eduarda Reichow :two_hearts: :two_hearts:" >> $GITHUB_STEP_SUMMARY
+          echo "### Eduarda Reichow & Gabriel :two_hearts: :two_hearts:" >> $GITHUB_STEP_SUMMARY
