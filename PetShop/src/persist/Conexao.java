@@ -10,8 +10,8 @@ public class Conexao {
 		 try {
 			 
 			 Class.forName("org.postgresql.Driver");
-			 String username = ""; //colocar user aqui
-			 String password = ""; //colocar senha aqui
+			 String username = "postgres"; //colocar user aqui
+			 String password = "dudareichow"; //colocar senha aqui
 			 String url = "jdbc:postgresql://localhost:5432/petshop"; //verificar nome do bd
 			 conexao = DriverManager.getConnection(url, username, password);
 			 

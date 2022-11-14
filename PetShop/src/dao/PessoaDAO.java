@@ -28,7 +28,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa>{
 	    	pstmt.setString(1, nome);
 	    	pstmt.setString(2, cpf);
 	    	pstmt.setString(3, celular);
-	    	pstmt.setLong(4, genero); //verificar  o tipo do set char
+	    	pstmt.setString(4, String.valueOf(genero)); //verificar  o tipo do set char
 	    	pstmt.setObject(5, dataNascimento); 
 	    	pstmt.setObject(6, endereco); //conferir se é o tipo correto para endereco
 	    	

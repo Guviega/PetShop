@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Pessoa {
 	
@@ -88,16 +89,7 @@ public class Pessoa {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
-		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
-		result = prime * result + ((dataNascimento == null) ? 0 : dataNascimento.hashCode());
-		result = prime * result + ((endereco == null) ? 0 : endereco.hashCode());
-		result = prime * result + genero;
-		result = prime * result + id;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		return result;
+		return Objects.hash(celular, cpf, dataNascimento, endereco, genero, id, nome);
 	}
 
 	@Override
@@ -109,36 +101,9 @@ public class Pessoa {
 		if (getClass() != obj.getClass())
 			return false;
 		Pessoa other = (Pessoa) obj;
-		if (celular == null) {
-			if (other.celular != null)
-				return false;
-		} else if (!celular.equals(other.celular))
-			return false;
-		if (cpf == null) {
-			if (other.cpf != null)
-				return false;
-		} else if (!cpf.equals(other.cpf))
-			return false;
-		if (dataNascimento == null) {
-			if (other.dataNascimento != null)
-				return false;
-		} else if (!dataNascimento.equals(other.dataNascimento))
-			return false;
-		if (endereco == null) {
-			if (other.endereco != null)
-				return false;
-		} else if (!endereco.equals(other.endereco))
-			return false;
-		if (genero != other.genero)
-			return false;
-		if (id != other.id)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		return true;
+		return Objects.equals(celular, other.celular) && Objects.equals(cpf, other.cpf)
+				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(endereco, other.endereco)
+				&& Objects.equals(genero, other.genero) && id == other.id && Objects.equals(nome, other.nome);
 	}
 	
 	//toString 
@@ -148,5 +113,6 @@ public class Pessoa {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", celular=" + celular + ", genero=" + genero
 				+ ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + "]";
 	}
+
 	
 }
