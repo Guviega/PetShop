@@ -3,6 +3,8 @@ package model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import Util.Util;
+
 public class Pessoa {
 	
 	//attributes
@@ -18,6 +20,15 @@ public class Pessoa {
 	public Pessoa() {
 	}
 
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, String endereco) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.celular = celular;
+		this.genero = genero;
+		this.dataNascimento = LocalDate.parse(endereco, Util.dateFormatter);
+		this.endereco = Util.parseEndereco(endereco);
+	}
+	
 	public Pessoa(String nome, String cpf, String celular, char genero, LocalDate dataNascimento, Endereco endereco) {
 		this.nome = nome;
 		this.cpf = cpf;

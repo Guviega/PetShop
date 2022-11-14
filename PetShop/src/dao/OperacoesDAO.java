@@ -10,6 +10,6 @@ public interface OperacoesDAO<T> {
     
     public boolean editar (T e);
     
-    public boolean pesquisar (int id);
+    public T pesquisar (int id);
    
 }

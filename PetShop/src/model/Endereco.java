@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Objects;
+
 public class Endereco {
 	
 	//attributes
-	private String rua, bairro, cidade;
-	private int numero, cep;
+	private String rua, bairro, cidade, cep;
+	private int numero;
 	
 	//constructor
 	
@@ -12,7 +14,7 @@ public class Endereco {
 		
 	}
 	
-	public Endereco(String rua, int numero, String bairro, String cidade, int cep) {
+	public Endereco(String rua, int numero, String bairro, String cidade, String cep) {
 		this.rua = rua;
 		this.bairro = bairro;
 		this.cidade = cidade;
@@ -54,11 +56,11 @@ public class Endereco {
 		this.numero = numero;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -66,16 +68,9 @@ public class Endereco {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
-		result = prime * result + cep;
-		result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
-		result = prime * result + numero;
-		result = prime * result + ((rua == null) ? 0 : rua.hashCode());
-		return result;
+		return Objects.hash(bairro, cep, cidade, numero, rua);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,26 +80,8 @@ public class Endereco {
 		if (getClass() != obj.getClass())
 			return false;
 		Endereco other = (Endereco) obj;
-		if (bairro == null) {
-			if (other.bairro != null)
-				return false;
-		} else if (!bairro.equals(other.bairro))
-			return false;
-		if (cep != other.cep)
-			return false;
-		if (cidade == null) {
-			if (other.cidade != null)
-				return false;
-		} else if (!cidade.equals(other.cidade))
-			return false;
-		if (numero != other.numero)
-			return false;
-		if (rua == null) {
-			if (other.rua != null)
-				return false;
-		} else if (!rua.equals(other.rua))
-			return false;
-		return true;
+		return Objects.equals(bairro, other.bairro) && Objects.equals(cep, other.cep)
+				&& Objects.equals(cidade, other.cidade) && numero == other.numero && Objects.equals(rua, other.rua);
 	}
 	
 	//toString
