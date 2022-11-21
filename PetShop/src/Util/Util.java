@@ -6,7 +6,7 @@ import model.Endereco;
 
 public class Util {
 	
-	public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY");
+	public static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	
 	public static Endereco parseEndereco(String endereco) {
 		String[] vet = endereco.split(" ");

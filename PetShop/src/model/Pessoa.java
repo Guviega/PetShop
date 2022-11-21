@@ -25,8 +25,17 @@ public class Pessoa {
 		this.cpf = cpf;
 		this.celular = celular;
 		this.genero = genero;
-		this.dataNascimento = LocalDate.parse(endereco, Util.dateFormatter);
+		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
 		this.endereco = Util.parseEndereco(endereco);
+	}
+	
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, Endereco endereco) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.celular = celular;
+		this.genero = genero;
+		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+		this.endereco = endereco;
 	}
 	
 	public Pessoa(String nome, String cpf, String celular, char genero, LocalDate dataNascimento, Endereco endereco) {

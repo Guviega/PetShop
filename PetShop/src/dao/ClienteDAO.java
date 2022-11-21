@@ -6,10 +6,11 @@ import model.Endereco;
 import model.Pessoa;
 import persist.Conexao;
 
-public class PessoaDAO implements OperacoesDAO<Pessoa> {
+public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
 	private static final Connection con = Conexao.getConexao();
 
+	@Override
 	public boolean inserir(Pessoa e) {
 
 		int id = e.getId();
@@ -29,7 +30,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa> {
 			pstmt.setString(3, celular);
 			pstmt.setString(4, String.valueOf(genero)); // verificar o tipo do set char
 			pstmt.setObject(5, dataNascimento);
-			pstmt.setObject(6, endereco); // conferir se é o tipo correto para endereco
+			pstmt.setObject(6, endereco.toString()); // conferir se é o tipo correto para endereco
 
 			int res = pstmt.executeUpdate(); // retorna a quantidade de registros inseridos
 
@@ -45,6 +46,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa> {
 		return false;
 	}
 
+	@Override
 	public boolean editar(Pessoa e) {
 
 		int id = e.getId();
@@ -55,7 +57,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa> {
 		LocalDate dataNascimento = e.getDataNascimento();
 		Endereco endereco = e.getEndereco();
 
-		String sql = "UPDATE PESSOA SET NOME = ?, CPF = ?, CELULAR = ?, GENERO = ?, DATANASCIMENTO = ?, ENDERECO = ? WHERE ID = ?";
+		String sql = "UPDATE CLIENTE SET NOME = ?, CPF = ?, CELULAR = ?, GENERO = ?, DATANASCIMENTO = ?, ENDERECO = ? WHERE ID = ?";
 
 		try (PreparedStatement pstmt = con.prepareStatement(sql);) {
 
@@ -82,7 +84,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa> {
 	@Override
 	public boolean excluir(int id) {
 		
-		String sql = "DELETE FROM PESSOA WHERE ID = " + id;
+		String sql = "DELETE FROM CLIENTE WHERE ID = " + id;
 		
 		try (Statement stmt = con.createStatement();) {
 
@@ -101,7 +103,7 @@ public class PessoaDAO implements OperacoesDAO<Pessoa> {
 		Pessoa p = null;
 		try {
 			
-			String sql = "SELECT * FROM PESSOA WHERE ID = "+id;
+			String sql = "SELECT * FROM CLIENTE WHERE ID = "+id;
 			
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
