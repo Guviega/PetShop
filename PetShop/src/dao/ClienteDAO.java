@@ -13,7 +13,6 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 	@Override
 	public boolean inserir(Pessoa e) {
 
-		int id = e.getId();
 		String nome = e.getNome();
 		String cpf = e.getCpf();
 		String celular = e.getCelular();
@@ -42,7 +41,7 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 			System.out.println(ex);
 		}
 		
-		System.out.println("EDITADO! " + e);
+		System.out.println("INSERIDO! " + e);
 		return false;
 	}
 

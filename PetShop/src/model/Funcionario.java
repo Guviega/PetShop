@@ -21,6 +21,14 @@ public class Funcionario extends Pessoa{
 		this.salario = salario;
 	}
 	
+	public Funcionario(String nome, String cpf, String celular, char genero, String dataNascimento, 
+			Endereco endereco, String email, double salario) {
+		
+		super(nome, cpf, celular, genero, dataNascimento, endereco);
+		this.email = email;
+		this.salario = salario;
+	}
+	
 	//getters and setters
 
 	public String getEmail() {
