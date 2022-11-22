@@ -11,7 +11,7 @@ public class Conexao {
 			 
 			 Class.forName("org.postgresql.Driver");
 			 String username = "postgres"; //colocar user aqui
-			 String password = "postgres"; //colocar senha aqui
+			 String password = "dudareichow"; //colocar senha aqui
 			 String url = "jdbc:postgresql://localhost:5432/petshop"; //verificar nome do bd
 			 conexao = DriverManager.getConnection(url, username, password);
 			 

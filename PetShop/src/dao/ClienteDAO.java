@@ -34,6 +34,8 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
 			int res = pstmt.executeUpdate(); // retorna a quantidade de registros inseridos
 
+			System.out.println("\nCliente "+nome+" inserido");
+			
 			if (res == 1)
 				return true;
 
@@ -55,7 +57,7 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 		String celular = e.getCelular();
 		char genero = e.getGenero();
 		LocalDate dataNascimento = e.getDataNascimento();
-		Endereco endereco = e.getEndereco();
+		String endereco = e.getEndereco().toString();
 
 		String sql = "UPDATE CLIENTE SET NOME = ?, CPF = ?, CELULAR = ?, GENERO = ?, DATANASCIMENTO = ?, ENDERECO = ? WHERE ID = ?";
 
@@ -67,6 +69,7 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 			pstmt.setString(4, String.valueOf(genero)); // verificar o tipo do set char
 			pstmt.setObject(5, dataNascimento);
 			pstmt.setObject(6, endereco); // conferir se é o tipo correto para endereco
+			pstmt.setInt(7, id);
 
 			int res = pstmt.executeUpdate(); // retorna a quantidade de registros inseridos
 
@@ -89,12 +92,13 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 		try (Statement stmt = con.createStatement();) {
 
 			boolean res = stmt.execute(sql); // retorna a quantidade de registros inseridos
+			//System.out.println("Cliente "+  + " excluido");
 			return res;
 
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
-		System.out.println("EXcluido!");
+		
 		return false;
 	}
 

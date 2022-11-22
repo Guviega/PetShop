@@ -46,6 +46,17 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 		this.endereco = endereco;
 	}
+	
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, Endereco endereco, int id) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.celular = celular;
+		this.genero = genero;
+		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+		this.endereco = endereco;
+		this.id = id;
+	}
+		
 
 	//getter and setters
 	
