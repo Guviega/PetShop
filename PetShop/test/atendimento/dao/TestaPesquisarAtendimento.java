@@ -8,7 +8,7 @@ public class TestaPesquisarAtendimento {
 
 		AtendimentoDAO dao = new AtendimentoDAO();
 		
-		System.out.println(dao.pesquisar(1));
+		System.out.println(dao.pesquisar(2));
 
 	}
 

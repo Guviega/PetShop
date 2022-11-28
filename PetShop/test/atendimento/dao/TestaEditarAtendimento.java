@@ -9,7 +9,7 @@ public class TestaEditarAtendimento {
 
 		AtendimentoDAO dao = new AtendimentoDAO();
 		
-		Atendimento a = dao.pesquisar(1);
+		Atendimento a = dao.pesquisar(2);
 		a.setData("19/10/2021");
 		a.setDescricao("Vacina geral");
 		a.setValor(150.0);

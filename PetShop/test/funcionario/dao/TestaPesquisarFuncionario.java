@@ -8,7 +8,7 @@ public class TestaPesquisarFuncionario {
 
 		FuncionarioDAO dao = new FuncionarioDAO();
 
-		System.out.println(dao.pesquisar(4));
+		System.out.println(dao.pesquisar(1));
 
 	}
 }

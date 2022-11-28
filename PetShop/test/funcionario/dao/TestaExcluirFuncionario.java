@@ -7,7 +7,7 @@ public class TestaExcluirFuncionario {
 	public static void main(String[] args) {
 		FuncionarioDAO dao = new FuncionarioDAO();
 		
-		dao.excluir(5);
+		dao.excluir(2);
 
 	}
 

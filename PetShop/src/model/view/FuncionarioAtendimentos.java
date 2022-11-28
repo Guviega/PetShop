@@ -46,7 +46,7 @@ public class FuncionarioAtendimentos {
 	
 	@Override
 	public String toString() {
-		return "Nome do funcionário= "+funcionario+ " Numero de atendimentos="+numero+" Valor total="+valor;
+		return "Nome do funcionario= "+funcionario+ "\nNumero de atendimentos="+numero+" \nValor total="+valor;
 	}
 
 }

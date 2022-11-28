@@ -14,8 +14,8 @@ public class TestaInserirAtendimento {
 
 		AtendimentoDAO dao = new AtendimentoDAO();
 		
-		Pet pet = new PetDAO().pesquisar(3);
-		Funcionario func = new FuncionarioDAO().pesquisar(6);
+		Pet pet = new PetDAO().pesquisar(1);
+		Funcionario func = new FuncionarioDAO().pesquisar(2);
 		Atendimento a = new Atendimento("Check-up", 80, "26/11/2022", Util.dateFormatter, pet, func);
 		
 		dao.inserir(a);

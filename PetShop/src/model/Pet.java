@@ -129,7 +129,7 @@ public class Pet {
 	@Override
 	public String toString() {
 		return "ID=" + id + " Nome=" + nome + " Tipo=" + tipo + " Raca=" + raca + " Cor=" + cor
-				+ " Nascimento=" + datanascimento + " Dono=" + dono.getNome();
+				+ " Nascimento=" + datanascimento.format(Util.dateFormatter) + " Dono=" + dono.getNome();
 	}
 
 }

@@ -7,7 +7,7 @@ public class TestaExcluirCliente {
 	public static void main(String[] args) {
 		ClienteDAO dao = new ClienteDAO();
 		
-		dao.excluir(7);
+		dao.excluir(8);
 
 	}
 

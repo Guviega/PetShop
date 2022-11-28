@@ -26,7 +26,7 @@ public class FuncionarioAtendimentosDAO {
 			stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				String nome = rs.getString("Nome do funcion·rio");
+				String nome = rs.getString("Nome do funcion√°rio");
 				int numero = rs.getInt("Numero de atendimentos");
 				double valor = rs.getInt("Valor total");
 
