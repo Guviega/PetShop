@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 //tudo okay
 
 public interface OperacoesDAO<T> {
@@ -12,4 +14,5 @@ public interface OperacoesDAO<T> {
     
     public T pesquisar (int id);
    
+    public List<T> listar();
 }

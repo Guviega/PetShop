@@ -1,6 +1,9 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import util.Util;
 
 public class Pet {
 
@@ -16,13 +19,23 @@ public class Pet {
 	public Pet() {
 	}
 
-	public Pet(String nome, String tipo, String raca, String cor, LocalDate dtNasc, Pessoa dono) {
+	public Pet(String nome, String tipo, String raca, String cor, String dtNasc, DateTimeFormatter formatter, Pessoa dono) {
 		this.cor = cor;
 		this.tipo = tipo;
 		this.nome = nome;
 		this.raca = raca;
 		this.dono = dono;
-		this.datanascimento = dtNasc;
+		this.datanascimento = LocalDate.parse(dtNasc, formatter);
+	}
+	
+	public Pet(String nome, String tipo, String raca, String cor, String dtNasc, DateTimeFormatter formatter, Pessoa dono, int id) {
+		this.cor = cor;
+		this.tipo = tipo;
+		this.nome = nome;
+		this.raca = raca;
+		this.dono = dono;
+		this.datanascimento = LocalDate.parse(dtNasc, formatter);
+		this.id = id;
 	}
 	
 	//getters and setters
@@ -74,6 +87,10 @@ public class Pet {
 	public void setDatanascimento(LocalDate datanascimento) {
 		this.datanascimento = datanascimento;
 	}
+	
+	public void setDatanascimento(String data) {
+		this.datanascimento = LocalDate.parse(data, Util.dateFormatter);
+	}
 
 	public Pessoa getDono() {
 		return this.dono;
@@ -98,57 +115,21 @@ public class Pet {
 		result = prime * result + ((tipo == null) ? 0 : tipo.hashCode());
 		return result;
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pet other = (Pet) obj;
-		if (cor == null) {
-			if (other.cor != null)
-				return false;
-		} else if (!cor.equals(other.cor))
-			return false;
-		if (datanascimento == null) {
-			if (other.datanascimento != null)
-				return false;
-		} else if (!datanascimento.equals(other.datanascimento))
-			return false;
-		if (dono == null) {
-			if (other.dono != null)
-				return false;
-		} else if (!dono.equals(other.dono))
-			return false;
-		if (id != other.id)
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (raca == null) {
-			if (other.raca != null)
-				return false;
-		} else if (!raca.equals(other.raca))
-			return false;
-		if (tipo == null) {
-			if (other.tipo != null)
-				return false;
-		} else if (!tipo.equals(other.tipo))
-			return false;
-		return true;
+		if (obj instanceof Pet) {
+			if (((Pet) obj).getId() == getId())
+				return true;
+			else return false;
+		}
+		return false;
 	}
-	
-	//toString
-	
+
 	@Override
 	public String toString() {
-		return "Pet [id=" + id + ", nome=" + nome + ", tipo=" + tipo + ", raca=" + raca + ", cor=" + cor
-				+ ", datanascimento=" + datanascimento + ", dono=" + dono + "]";
+		return "ID=" + id + " Nome=" + nome + " Tipo=" + tipo + " Raca=" + raca + " Cor=" + cor
+				+ " Nascimento=" + datanascimento + " Dono=" + dono.getNome();
 	}
 
 }

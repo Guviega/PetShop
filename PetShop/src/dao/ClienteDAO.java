@@ -2,9 +2,13 @@ package dao;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import model.Endereco;
 import model.Pessoa;
 import persist.Conexao;
+import util.Util;
 
 public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
@@ -42,8 +46,6 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
 			System.out.println(ex);
 		}
-		
-		System.out.println("INSERIDO! " + e);
 		return false;
 	}
 
@@ -72,13 +74,14 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
 			int res = pstmt.executeUpdate(); // retorna a quantidade de registros inseridos
 
+			System.out.println("Cliente: "+nome+" editado!");
+			
 			if (res == 1)
 				return true;
 
 		} catch (SQLException ex) {
 			System.out.println(ex);
 		}
-		System.out.println("EDITADO! " + e);
 		return false;
 
 	}
@@ -90,8 +93,9 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 		
 		try (Statement stmt = con.createStatement();) {
 
+			String nome = pesquisar(id).getNome();
 			boolean res = stmt.execute(sql); // retorna a quantidade de registros inseridos
-			//System.out.println("Cliente "+  + " excluido");
+			System.out.println("Cliente: "+nome+" excluido!");
 			return res;
 
 		} catch (SQLException ex) {
@@ -103,7 +107,7 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 
 	@Override
 	public Pessoa pesquisar(int id) {
-		Pessoa p = null;
+		Pessoa p = new Pessoa();
 		try {
 			
 			String sql = "SELECT * FROM CLIENTE WHERE ID = "+id;
@@ -119,7 +123,7 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
 	        String endereco = rs.getString("endereco");
 	        String datanascimento = rs.getString("datanascimento");
 	        
-	        p = new Pessoa(nome, cpf, celular, genero, datanascimento, endereco);
+	        p = new Pessoa(nome, cpf, celular, genero, datanascimento, Util.DBdateFormatter, endereco, id);
 	        
 			
 		} catch (SQLException ex) {
@@ -128,6 +132,37 @@ public class ClienteDAO implements OperacoesDAO<Pessoa> {
         
 		System.out.println();
 		return p;
+	}
+
+	@Override
+	public List<Pessoa> listar() {
+		List<Pessoa> lista = new ArrayList<>();
+		
+		String sql = "SELECT * FROM CLIENTE";
+		
+		Statement stmt;
+		try {
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+		        String cpf = rs.getString("cpf");
+		        char genero = rs.getString("genero").charAt(0);
+		        String celular = rs.getString("celular");
+		        String endereco = rs.getString("endereco");
+		        String datanascimento = rs.getString("datanascimento");
+		        int id = rs.getInt("id");
+		        
+		        Pessoa p = new Pessoa(nome, cpf, celular, genero, datanascimento, Util.DBdateFormatter, endereco, id);
+		        lista.add(p);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
+		
+		return lista;
 	}
 
 }

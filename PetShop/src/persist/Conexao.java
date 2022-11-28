@@ -14,6 +14,7 @@ public class Conexao {
 			 String password = "postgres"; //colocar senha aqui
 			 String url = "jdbc:postgresql://localhost:5432/petshop"; //verificar nome do bd
 			 conexao = DriverManager.getConnection(url, username, password);
+			 System.out.println("-------------- CONEXAO CRIADA ! -------------------");
 			 
 		 } catch (ClassNotFoundException e) {
 			 
@@ -23,8 +24,6 @@ public class Conexao {
 			 
 			 e.printStackTrace();
 		 }
-
-		 System.out.println("-------------- CONEXAO CRIADA ! -------------------");
        
 		 return conexao;
 		 

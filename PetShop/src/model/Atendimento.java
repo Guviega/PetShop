@@ -1,29 +1,48 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import util.Util;
+
 public class Atendimento {
 
-	//attributes
-	
+	// attributes
+
 	private String descricao;
 	private double valor;
 	private int id;
+	private LocalDate data;
 	private Pet pet;
 	private Funcionario funcionario;
 
-	//constructor
-	
+	// constructor
+
 	public Atendimento() {
 	}
 
-	public Atendimento(String descricao, double valor, int id, Pet pet, Funcionario funcionario) {
+	public Atendimento(String descricao, double valor, String data, DateTimeFormatter formatter, Pet pet,
+			Funcionario funcionario) {
+		super();
 		this.descricao = descricao;
 		this.valor = valor;
-		this.id = id;
+		this.data = LocalDate.parse(data, formatter);
 		this.pet = pet;
 		this.funcionario = funcionario;
 	}
-	
-	//getters and setters
+
+	public Atendimento(String descricao, double valor, String data, DateTimeFormatter formatter, Pet pet,
+			Funcionario funcionario, int id) {
+		super();
+		this.descricao = descricao;
+		this.valor = valor;
+		this.id = id;
+		this.data = LocalDate.parse(data, formatter);
+		this.pet = pet;
+		this.funcionario = funcionario;
+	}
+
+	// getters and setters
 
 	public String getDescricao() {
 		return descricao;
@@ -39,6 +58,14 @@ public class Atendimento {
 
 	public void setValor(double valor) {
 		this.valor = valor;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = LocalDate.parse(data, Util.dateFormatter);
 	}
 
 	public int getId() {
@@ -64,8 +91,8 @@ public class Atendimento {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-	
-	//hashCode and equals
+
+	// hashCode and equals
 
 	@Override
 	public int hashCode() {
@@ -83,44 +110,21 @@ public class Atendimento {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Atendimento other = (Atendimento) obj;
-		if (descricao == null) {
-			if (other.descricao != null)
+		if (obj instanceof Atendimento) {
+			if (((Atendimento) obj).getId() == this.getId()) {
+				return true;
+			} else
 				return false;
-		} else if (!descricao.equals(other.descricao))
-			return false;
-		if (funcionario == null) {
-			if (other.funcionario != null)
-				return false;
-		} else if (!funcionario.equals(other.funcionario))
-			return false;
-		if (id != other.id)
-			return false;
-		if (pet == null) {
-			if (other.pet != null)
-				return false;
-		} else if (!pet.equals(other.pet))
-			return false;
-		if (Double.doubleToLongBits(valor) != Double.doubleToLongBits(other.valor))
-			return false;
-		return true;
+		}
+		return false;
 	}
 
-	//toString
-	
+	// toString
+
 	@Override
 	public String toString() {
-		return "Atendimento [descricao=" + descricao + ", valor=" + valor + ", id=" + id + ", pet=" + pet
-				+ ", funcionario=" + funcionario + "]";
+		return "ID= "+id+" Descricao=" + descricao + " Valor=" + valor + " Pet=" + pet.getNome()
+				+ " Funcionario=" + funcionario.getNome();
 	}
-	
-	
-	
-	
+
 }

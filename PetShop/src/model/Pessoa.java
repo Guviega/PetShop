@@ -1,65 +1,70 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import Util.Util;
+import util.Util;
 
 public class Pessoa {
-	
-	//attributes
-	
+
+	// attributes
+
 	private int id;
 	private String nome, cpf, celular;
 	private char genero;
 	private LocalDate dataNascimento;
 	private Endereco endereco;
-	
-	//constructor 
-	
+
+	// constructor
+
 	public Pessoa() {
 	}
 
-	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, String endereco) {
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento,
+			DateTimeFormatter formatter, String endereco) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.celular = celular;
 		this.genero = genero;
-		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+		this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
 		this.endereco = Util.parseEndereco(endereco);
 	}
-	
-	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, Endereco endereco) {
+
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento,
+			DateTimeFormatter formatter, String endereco, int id) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.celular = celular;
 		this.genero = genero;
-		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+		this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
+		this.endereco = Util.parseEndereco(endereco);
+		this.id = id;
+	}
+
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento,
+			DateTimeFormatter formatter, Endereco endereco) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.celular = celular;
+		this.genero = genero;
+		this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
 		this.endereco = endereco;
 	}
-	
-	public Pessoa(String nome, String cpf, String celular, char genero, LocalDate dataNascimento, Endereco endereco) {
+
+	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento,
+			DateTimeFormatter formatter, Endereco endereco, int id) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.celular = celular;
 		this.genero = genero;
-		this.dataNascimento = dataNascimento;
-		this.endereco = endereco;
-	}
-	
-	public Pessoa(String nome, String cpf, String celular, char genero, String dataNascimento, Endereco endereco, int id) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.celular = celular;
-		this.genero = genero;
-		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+		this.dataNascimento = LocalDate.parse(dataNascimento, formatter);
 		this.endereco = endereco;
 		this.id = id;
 	}
-		
 
-	//getter and setters
-	
+	// getter and setters
+
 	public int getId() {
 		return id;
 	}
@@ -67,7 +72,7 @@ public class Pessoa {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -108,6 +113,10 @@ public class Pessoa {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public void setDataNascimento(String dataNascimento) {
+		this.dataNascimento = LocalDate.parse(dataNascimento, Util.dateFormatter);
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -115,35 +124,28 @@ public class Pessoa {
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
 	}
-	
-	//hashCode and equals
-	
+
+	@Override
+	public String toString() {
+		return "ID=" + getId() + " Nome=" + getNome() + " Sexo=" + getGenero() + " CPF=" + getCpf() + " Celular="
+				+ getCelular() + " Nascimento=" + dataNascimento.format(Util.dateFormatter) + " Endereco="
+				+ getEndereco();
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(celular, cpf, dataNascimento, endereco, genero, id, nome);
+		return Objects.hash(cpf);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pessoa other = (Pessoa) obj;
-		return Objects.equals(celular, other.celular) && Objects.equals(cpf, other.cpf)
-				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(endereco, other.endereco)
-				&& Objects.equals(genero, other.genero) && id == other.id && Objects.equals(nome, other.nome);
-	}
-	
-	//toString 
-	
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", celular=" + celular + ", genero=" + genero
-				+ ", dataNascimento=" + dataNascimento + ", endereco=" + endereco + "]";
+		if (obj instanceof Pessoa) {
+			if (((Pessoa) obj).getCpf() == this.getCpf()) {
+				return true;
+			} else
+				return false;
+		}
+		return false;
 	}
 
-	
 }
